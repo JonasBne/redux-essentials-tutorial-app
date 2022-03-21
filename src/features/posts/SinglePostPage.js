@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 export const SinglePostPage = () => {
   const { postId } = useParams()
@@ -22,6 +22,9 @@ export const SinglePostPage = () => {
       <article className="post">
         <h2>{post.title}</h2>
         <p className="post-content">{post.content}</p>
+        <Link className="button muted-button" to={'/posts'}>
+          Go Back
+        </Link>
       </article>
     </section>
   )
