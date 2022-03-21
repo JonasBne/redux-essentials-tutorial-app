@@ -25,6 +25,9 @@ export const SinglePostPage = () => {
         <Link className="button muted-button" to={'/posts'}>
           Go Back
         </Link>
+        <Link className="button muted-button" to={`/posts/${post.id}/edit`}>
+          Edit
+        </Link>
       </article>
     </section>
   )
