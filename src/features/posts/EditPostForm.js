@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { postUpdated } from './posts/postSlice'
+import { postUpdated } from './postSlice'
 
 export const EditPostForm = () => {
   const dispatch = useDispatch()
