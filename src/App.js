@@ -27,7 +27,11 @@ function App() {
               </React.Fragment>
             )}
           />
-          <Route exact path={'/:postId'} render={() => <SinglePostPage />} />
+          <Route
+            exact
+            path={'/posts/:postId'}
+            render={() => <SinglePostPage />}
+          />
           <Redirect to="/" />
         </Switch>
       </div>
