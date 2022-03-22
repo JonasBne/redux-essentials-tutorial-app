@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useHistory } from 'react-router-dom'
 import { postUpdated } from './postSlice'
 
 export const EditPostForm = () => {
   const dispatch = useDispatch()
+
+  const history = useHistory()
 
   const { postId } = useParams()
 
@@ -23,12 +25,16 @@ export const EditPostForm = () => {
   }
 
   const handleSavePost = () => {
-    dispatch(
-      postUpdated({
-        title,
-        content,
-      })
-    )
+    if (title && content) {
+      dispatch(
+        postUpdated({
+          id: postId,
+          title,
+          content,
+        })
+      )
+      history.push(`/posts/${postId}`)
+    }
   }
 
   return (
