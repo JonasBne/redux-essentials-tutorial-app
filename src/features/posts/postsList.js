@@ -7,7 +7,6 @@ import { TimeAgo } from './TimeAgo'
 
 export const PostsList = () => {
   const posts = useSelector((state) => state.posts)
-  console.log(posts)
 
   const orderedPosts = posts
     .slice()
