@@ -1,4 +1,9 @@
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
+import {
+  createSlice,
+  nanoid,
+  createAsyncThunk,
+  createSelector,
+} from '@reduxjs/toolkit'
 import { client } from '../../api/client'
 
 const initialState = {
@@ -102,3 +107,15 @@ export const selectAllPosts = (state) => state.posts.posts
 
 export const selectPostById = (state, postId) =>
   state.posts.posts.find((post) => post.id === postId)
+
+export const selectUserId = (state, userId) => userId
+
+export const selectPostByUser = createSelector(
+  // extract the posts array
+  // extract the userId
+  // both values are needed in the 'outer' selector function
+  // these are 'input selector functions'
+  [selectAllPosts, selectUserId],
+  // this is the 'outer selector function' (the one that gets memoized)
+  (posts, userId) => posts.filter((post) => post.user === userId)
+)
