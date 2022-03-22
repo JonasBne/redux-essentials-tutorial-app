@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { selectAllPosts } from '../posts/postSlice'
 import { selectUserById } from './usersSlice'
 
-export const SinglePostPage = () => {
+export const UserPage = () => {
   const { userId } = useParams()
 
   const user = useSelector((state) => selectUserById(state, userId))
