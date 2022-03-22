@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { fetchPosts, selectAllPosts } from './postSlice'
-import { PostAuthor } from './PostAuthor'
-import { ReactionButtons } from './ReactionButtons'
-import { TimeAgo } from './TimeAgo'
+import { Spinner } from '../../components/Spinner'
+import { PostExcerpt } from './PostExcerpt'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const PostsList = () => {
@@ -18,27 +16,30 @@ export const PostsList = () => {
     }
   }, [postStatus, dispatch])
 
-  const orderedPosts = posts
-    .slice()
-    .sort((a, b) => b.date.localeCompare(a.date))
+  let content
+
+  if (postStatus === 'loading') {
+    content = <Spinner text="Loading posts..." />
+  }
+
+  if (postStatus === 'failed') {
+    content = <div>{posts.error}</div>
+  }
+
+  if (postStatus === 'succeeded') {
+    const orderedPosts = posts
+      .slice()
+      .sort((a, b) => b.date.localeCompare(a.date))
+
+    content = orderedPosts.map((post) => (
+      <PostExcerpt key={post.id} post={post} />
+    ))
+  }
 
   return (
     <section className="posts-list">
       <h2>Posts</h2>
-      {orderedPosts.map((post) => (
-        <article className="post-excerpt" key={post.id}>
-          <h3>{post.title}</h3>
-          <PostAuthor userId={post.userId} /> <TimeAgo timestamp={post.date} />
-          <p className="post-content">{post.content.substring(0, 100)}</p>
-          <ReactionButtons post={post} />
-          <Link className="button muted-button" to={`/posts/${post.id}`}>
-            View
-          </Link>
-          <Link className="button muted-button" to={`/posts/${post.id}/edit`}>
-            Edit
-          </Link>
-        </article>
-      ))}
+      {content}
     </section>
   )
 }
