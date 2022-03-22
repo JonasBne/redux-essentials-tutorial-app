@@ -5,7 +5,6 @@ const initialState = []
 
 export const fetchUsers = createAsyncThunk('posts/fetchUsers', async () => {
   const response = await client.get('/fakeApi/users')
-  console.log('response', response)
   return response.data
 })
 

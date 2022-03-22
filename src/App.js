@@ -13,6 +13,7 @@ import { PostsList } from './features/posts/postsList'
 import { SinglePostPage } from './features/posts/SinglePostPage'
 import { UsersList } from './features/users/UsersList'
 import { UserPage } from './features/users/UserPage'
+import { NotificationsList } from './features/notifications/NotificationsList'
 
 function App() {
   return (
@@ -42,6 +43,11 @@ function App() {
           />
           <Route exact path={'/users'} render={() => <UsersList />} />
           <Route exact path={'/users/:userId'} render={() => <UserPage />} />
+          <Route
+            exact
+            path={'/notifications'}
+            render={() => <NotificationsList />}
+          />
           <Redirect to="/" />
         </Switch>
       </div>
