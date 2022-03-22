@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { PostAuthor } from './PostAuthor'
+import { TimeAgo } from './TimeAgo'
 
 export const SinglePostPage = () => {
   const { postId } = useParams()
@@ -23,6 +24,7 @@ export const SinglePostPage = () => {
       <article className="post">
         <h2>{post.title}</h2>
         <PostAuthor userId={post.userId} />
+        <TimeAgo timestamp={post.date} />
         <p className="post-content">{post.content}</p>
         <Link className="button muted-button" to={'/posts'}>
           Go Back

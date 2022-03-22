@@ -7,6 +7,13 @@ const initialState = [
     content: 'Hello!',
     userId: '0',
     date: '2022-03-22T08:58:39.710Z',
+    reactions: {
+      thumbsUp: 0,
+      hooray: 0,
+      heart: 0,
+      rocket: 0,
+      eyes: 0,
+    },
   },
   {
     id: '2',
@@ -14,6 +21,13 @@ const initialState = [
     content: 'More text',
     userId: '1',
     date: '2022-03-22T07:58:39.710Z',
+    reactions: {
+      thumbsUp: 0,
+      hooray: 0,
+      heart: 0,
+      rocket: 0,
+      eyes: 0,
+    },
   },
 ]
 
