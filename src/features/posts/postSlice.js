@@ -81,6 +81,15 @@ const postsSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
       })
+      .addCase(addNewPost.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(addNewPost.fulfilled, (state, action) => {
+        state.posts.push(action.payload)
+      })
+      .addCase(addNewPost.rejected, (state, action) => {
+        state.status = 'failed'
+      })
   },
 })
 
